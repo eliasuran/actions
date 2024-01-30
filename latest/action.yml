@@ -7,20 +7,25 @@ runs:
       uses: actions/checkout@v4
 
     - name: Setup Git
+      shell: bash
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "Github Action"
 
     - name: Delete the local 'latest' tag
+      shell: bash
       run: git tag -d latest || true
 
     - name: Delete the remote 'latest' tag
+      shell: bash
       run: git push --delete origin latest || true
 
     - name: Create new 'latest' tag
+      shell: bash
       run: git tag -a latest -m "Update latest tag"
 
     - name: Push the 'latest' tag to Github
+      shell: bash
       run: git push origin latest
 
 on:
